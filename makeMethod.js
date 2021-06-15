@@ -66,3 +66,31 @@ Array.prototype.juMap = function(callbackFn){
 // let arr = [1, 4 , 9];
 // const result = arr1.juMap(el => Math.sqrt(el));
 //console.log(result); // [1, 2, 3]
+
+
+//* filter 함수 만들기
+
+Array.prototype.juFilter = function(callbackFn){
+    let newArray = []; //새로 만들어질 빈 배열 선언과 할당
+
+    for(let i = 0; i < this.length; i++){
+        // 콜백함수가 받는 인수(element, index, array)
+        if(callbackFn.call(this, this[i], i)){
+            newArray.push(this[i]); // 콜백함수가 true인 것만 새로운 배열에 담기
+        }
+    }
+    return newArray; //새로운 배열 반환
+}
+// test 배열 요소 중 10이상인 수 
+// let arr = [12, 5, 8, 130, 44];
+// let result = arr.juFilter(el => el >= 10);
+// console.log(result);
+
+// test 배열 요소 중 'ap'를 포함하는 요소
+// let fruits = ['apple', 'banana', 'grapes', 'mango', 'orange'];
+// function filterItems(query){
+//     return fruits.juFilter(function(el){
+//         return el.indexOf(query) > -1;
+//     })
+// }
+// console.log(filterItems('ap')); // ['apple', 'grapes']
